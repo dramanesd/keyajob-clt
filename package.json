@@ -4,6 +4,7 @@
   "private": true,
   "dependencies": {
     "axios": "^0.18.1",
+    "http-proxy-middleware": "^1.0.6",
     "jwt-decode": "^2.2.0",
     "moment": "^2.22.1",
     "prop-types": "^15.7.2",
@@ -16,11 +17,11 @@
     "redux": "^4.0.0",
     "redux-thunk": "^2.2.0"
   },
-  "proxy": "http://keyajob-v2.herokuapp.com",
-  "secure": false,
+  "proxy": "https://keyajob-v2.herokuapp.com",
+  "server": false,
   "scripts": {
     "start": "react-scripts start",
-    "build": "react-scripts build",
+    "build": "react-scripts build && cp -r build/* ../client/",
     "test": "react-scripts test --env=jsdom",
     "eject": "react-scripts eject"
   },

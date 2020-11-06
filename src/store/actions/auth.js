@@ -5,7 +5,7 @@ import { addError, removeError } from "./errors";
 export function setCurrentUser(user) {
   return {
     type: SET_CURRENT_USER,
-    user
+    user,
   };
 }
 
@@ -14,7 +14,7 @@ export function setAuthorizationToken(token) {
 }
 
 export function logout() {
-  return dispatch => {
+  return (dispatch) => {
     localStorage.clear();
     setAuthorizationToken(false);
     dispatch(setCurrentUser({}));
@@ -22,10 +22,14 @@ export function logout() {
 }
 
 export function authUser(type, userData) {
-  return dispatch => {
+  return (dispatch) => {
     // wrap our thunk in a promise so we can wait for the API call
     return new Promise((resolve, reject) => {
-      return apiCall("post", `/api/auth/${type}`, userData)
+      const url =
+        process.env.NODE_ENV == "development"
+          ? `/api/auth/${type}`
+          : `/auth/${type}`;
+      return apiCall("post", `/auth/${type}`, userData)
         .then(({ token, ...user }) => {
           localStorage.setItem("jwtToken", token);
           setAuthorizationToken(token);
@@ -33,11 +37,10 @@ export function authUser(type, userData) {
           dispatch(removeError());
           resolve(); // indicate that the API call succeeded
         })
-        .catch(err => {
+        .catch((err) => {
           dispatch(addError(err.message));
           reject(); // indicate the API call failed
         });
     });
   };
 }
-

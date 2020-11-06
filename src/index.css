@@ -1858,7 +1858,7 @@ fieldset {
 
 /*  Blog Component styles  */
 .blog-coming-soon {
-  /* background-image: url(/img/coming-soon-bg.png); */
+  background-image: url(./imgs/coming-soon-bg.png);
   background-size: cover;
   background-repeat: no-repeat;
   background-position-x: center;
