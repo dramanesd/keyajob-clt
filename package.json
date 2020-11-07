@@ -1,7 +1,7 @@
 {
   "name": "keyajob-client",
   "version": "0.1.0",
-  "homepage": "https://hopeful-rosalind-046038.netlify.app/static",
+  "homepage": "https://hopeful-rosalind-046038.netlify.app",
   "private": true,
   "dependencies": {
     "axios": "^0.18.1",
