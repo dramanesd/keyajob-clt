@@ -9,7 +9,11 @@ export const loadCategories = (categories) => ({
 
 export const fetchCategories = () => {
   return (dispatch) => {
-    return apiCall("get", "/api/categories")
+    const url =
+      process.env.REACT_APP_PROD == "production"
+        ? `/categories`
+        : `/api/categories`;
+    return apiCall("get", url)
       .then((res) => {
         dispatch(loadCategories(res));
       })

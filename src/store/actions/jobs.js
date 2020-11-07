@@ -27,7 +27,11 @@ export const fetchAllJobs = () => {
 
 export const fetchSingleJob = (jobId) => {
   return (dispatch) => {
-    return apiCall("get", `/api/jobs/${jobId}`)
+    const url =
+      process.env.REACT_APP_PROD == "production"
+        ? `/jobs/${jobId}`
+        : `/api/jobs/${jobId}`;
+    return apiCall("get", url)
       .then((res) => {
         dispatch(loadOneJob(res));
       })

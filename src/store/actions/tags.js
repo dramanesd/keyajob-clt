@@ -9,8 +9,9 @@ export const loadTags = (tags) => ({
 
 export const fetchTags = () => {
   return (dispatch) => {
-    const url = process.env.NODE_ENV == "development" ? "/api/tags" : "/tags";
-    return apiCall("get", "/url")
+    const url =
+      process.env.REACT_APP_PROD == "production" ? "/tags" : "/api/tags";
+    return apiCall("get", url)
       .then((res) => {
         dispatch(loadTags(res));
       })

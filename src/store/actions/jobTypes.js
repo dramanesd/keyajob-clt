@@ -10,7 +10,9 @@ export const loadJobTypes = (jobTypes) => ({
 export const fetchJobTypes = () => {
   return (dispatch) => {
     const url =
-      process.env.NODE_ENV == "development" ? "/api/jobtypes" : "/jobtypes";
+      process.env.REACT_APP_PROD == "production"
+        ? "/jobtypes"
+        : "/api/jobtypes";
     return apiCall("get", url)
       .then((res) => {
         dispatch(loadJobTypes(res));

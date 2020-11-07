@@ -12,9 +12,9 @@ export const fetchCompanies = () => {
     let { currentUser } = getState();
     const id = currentUser.user.userId;
     const url =
-      process.env.NODE_ENV == "development"
-        ? `/api/user/${id}/companies`
-        : `/user/${id}/companies`;
+      process.env.REACT_APP_PROD == "production"
+        ? `/user/${id}/companies`
+        : `/api/user/${id}/companies`;
     return apiCall("get", url)
       .then((res) => {
         dispatch(loadCompanies(res));

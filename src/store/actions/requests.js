@@ -3,9 +3,9 @@ import { addError } from "./errors";
 
 export const postNewRequest = (request) => (dispatch) => {
   const url =
-    process.env.NODE_ENV == "development"
-      ? "/api/requests/new"
-      : "/requests/new";
+    process.env.REACT_APP_PROD == "production"
+      ? "/requests/new"
+      : "/api/requests/new";
   return apiCall("post", url, request)
     .then((res) => {})
     .catch((err) => {
