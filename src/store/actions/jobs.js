@@ -44,7 +44,11 @@ export const fetchSingleJob = (jobId) => {
 export const postNewCompany = (company) => (dispatch, getState) => {
   let { currentUser } = getState();
   const id = currentUser.user.userId;
-  return apiCall("post", `/api/user/${id}/companies/new`, company)
+  const url =
+    process.env.REACT_APP_PROD == "production"
+      ? `/user/${id}/companies/new`
+      : `/api/user/${id}/companies/new`;
+  return apiCall("post", url, company)
     .then((res) => {})
     .catch((err) => {
       dispatch(addError(err.message));
@@ -54,7 +58,11 @@ export const postNewCompany = (company) => (dispatch, getState) => {
 export const postNewJob = (job) => (dispatch, getState) => {
   let { currentUser } = getState();
   const id = currentUser.user.userId;
-  return apiCall("post", `/api/users/${id}/jobs/new`, job)
+  const url =
+    process.env.REACT_APP_PROD == "production"
+      ? `/users/${id}/jobs/new`
+      : `/api/users/${id}/jobs/new`;
+  return apiCall("post", url, job)
     .then((res) => {})
     .catch((err) => {
       dispatch(addError(err.message));
