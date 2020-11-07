@@ -14,8 +14,9 @@ export const loadOneJob = (job) => ({
 
 export const fetchAllJobs = () => {
   return (dispatch) => {
-    // const url = process.env.NODE_ENV == "development" ? "/api/jobs" : "/jobs";
-    return apiCall("get", "/api/jobs")
+    const url =
+      process.env.REACT_APP_PROD == "production" ? "/jobs" : "/api/jobs";
+    return apiCall("get", url)
       .then((res) => {
         dispatch(loadJobs(res));
       })
