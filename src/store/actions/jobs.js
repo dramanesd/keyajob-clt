@@ -14,9 +14,9 @@ export const loadOneJob = (job) => ({
 
 export const fetchAllJobs = () => {
   return (dispatch) => {
-    const url =
-      process.env.REACT_APP_PROD == "production" ? "/jobs" : "/api/jobs";
-    return apiCall("get", url)
+    // const url =
+    //   process.env.REACT_APP_PROD == "production" ? "/jobs" : "/api/jobs";
+    return apiCall("get", "/api/jobs")
       .then((res) => {
         dispatch(loadJobs(res));
       })
@@ -28,11 +28,11 @@ export const fetchAllJobs = () => {
 
 export const fetchSingleJob = (jobId) => {
   return (dispatch) => {
-    const url =
-      process.env.REACT_APP_PROD == "production"
-        ? `/jobs/${jobId}`
-        : `/api/jobs/${jobId}`;
-    return apiCall("get", url)
+    // const url =
+    //   process.env.REACT_APP_PROD == "production"
+    //     ? `/jobs/${jobId}`
+    //     : `/api/jobs/${jobId}`;
+    return apiCall("get", `/api/jobs/${jobId}`)
       .then((res) => {
         dispatch(loadOneJob(res));
       })
@@ -45,11 +45,11 @@ export const fetchSingleJob = (jobId) => {
 export const postNewCompany = (company) => (dispatch, getState) => {
   let { currentUser } = getState();
   const id = currentUser.user.userId;
-  const url =
-    process.env.REACT_APP_PROD == "production"
-      ? `/user/${id}/companies/new`
-      : `/api/user/${id}/companies/new`;
-  return apiCall("post", url, company)
+  // const url =
+  //   process.env.REACT_APP_PROD == "production"
+  //     ? `/user/${id}/companies/new`
+  //     : `/api/user/${id}/companies/new`;
+  return apiCall("post", `/api/user/${id}/companies/new`, company)
     .then((res) => {})
     .catch((err) => {
       dispatch(addError(err.message));
