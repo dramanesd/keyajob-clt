@@ -11,8 +11,8 @@ export const fetchCategories = () => {
   return (dispatch) => {
     const url =
       process.env.REACT_APP_PROD == "production"
-        ? `/categories`
-        : `/api/categories`;
+        ? "/categories"
+        : "/api/categories";
     return apiCall("get", url)
       .then((res) => {
         dispatch(loadCategories(res));
